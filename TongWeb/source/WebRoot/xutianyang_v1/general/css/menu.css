@@ -1,0 +1,26 @@
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+ul {
+	list-style: none;
+	padding: 0px;
+}
+
+a {
+	width: 210px;
+}
+
+.l-btn-left {
+	margin: 10px;
+	margin-left: 30px;
+}
+
+.l-btn {
+	text-align: left;
+}
+
+.l-btn-text {
+	font-size: 14px;
+}

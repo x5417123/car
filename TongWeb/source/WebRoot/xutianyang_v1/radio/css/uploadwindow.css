@@ -1,0 +1,152 @@
+a {
+	position: relative;
+	text-decoration: none;
+}
+a:hover:before {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	content: attr(title);
+	color: #000000;
+	border: 1px solid #242424;
+	background-color: #E5E5E5;
+}
+.uploadwindow {
+  box-shadow: 0 0 20px -2px rgba(0,0,0,.5);
+  width: 635px;
+  z-index: 10000;
+  border: 0;
+  bottom: 5px;
+  right: 30px;
+  position: absolute;
+  background-color: white;
+}
+.uploadwindow-top {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	background: #408EE6;
+	width: 635px;
+	height: 39px;
+	line-height: 39px;
+}
+.uploadwindow-top-text {
+	margin-left: 10px;
+	font-weight: 700;
+	float: left;
+	color: white;
+}
+.uploadwindow-top-MaxAndMin {
+	float: right;
+	width: 20px;
+	height: 20px;
+	background: url(/gf_doc/img/uploadwindow/img/minwindows.png) no-repeat;
+	position: relative;
+	right: 40px;
+	top: 10px;
+	cursor: pointer;
+}
+.uploadwindow-top-MaxAndMin:hover{
+	margin-top:2px;
+	}
+.uploadwindow-top-close:hover{
+	margin-top:2px;
+	}
+.uploadwindow-top-close {
+	float: right;
+	width: 20px;
+	height: 20px;
+	background: url(/gf_doc/img/uploadwindow/img/close1.png) no-repeat;
+	position: relative;
+	right: -7px;
+	top: 10px;
+	cursor: pointer;
+}
+.uploadwindow-center {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	width: 635px;
+	height: 377px;
+}
+.uploadwindow-center-ul {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	list-style: none;
+	width: 635px;
+	height: 377px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+.uploadwindow-center-line {
+	display:block;
+	height:24px;
+	padding: 8px 0;
+	border-bottom: 1px solid #d2d2d2;
+	line-height: 24px;
+}
+.uploadwindow-center-line-div1 {
+	height: 24px;
+	width: 635px;
+	float: left;
+}
+.uploadwindow-center-line-div2 {
+	height: 24px;
+	width: 253px;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.uploadwindow-center-line-div2-span {
+	display: block;
+	height: 24px;
+	width: 24px;
+	float: left;
+	margin-left: 25px;
+	margin-top: 4px;
+	position: relative;
+}
+.uploadwindow-center-line-fliesize {
+	float: left;
+	width: 80px;
+	height: 24px;
+	margin-left: 10px;
+}
+.uploadwindow-center-line-way {
+	
+	float: left;
+	width: 82px;
+	height: 24px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.uploadwindow-center-line-state {
+	float: left;
+	width: 120px;
+	height: 24px;
+	margin-left: 20px;
+}
+.uploadwindow-center-line-way-a{
+	color:#06c;
+}
+.uploadwindow-center-line-way-a:hover {
+	text-decoration: underline;
+}
+.closeupload{
+	float:right;
+	margin-right:50px;
+	margin-top:4px;
+	width:16px;
+	height:16px;
+	background:url(/gf_doc/img/uploadwindow/img/close2.png) no-repeat;
+	}
+.closeupload:hover{
+	background:url(/gf_doc/img/uploadwindow/img/close3.png) no-repeat;
+	margin-top:6px;
+	}

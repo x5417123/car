@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="pragma" content="no-cache" /> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
+  <meta http-equiv="expires" content="0" /> 
+  <title>test.html</title> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/bootstrap/easyui.css" /> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/icon.css" /> 
+  <link rel="stylesheet" type="text/css" href="../../general/css/menu.css" /> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript">
+	$(function(){
+		$("#radio").click(function(){
+			page = './radio/page/radioview.html';
+			title = '电台管理';
+			gfmod.addClosableViewPage(page, title);
+		});
+	});
+	</script> 
+ </head> 
+ <body> 
+  <ul> 
+   <li><a id="radio" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user'">电台管理</a></li> 
+  </ul>   
+ </body>
+</html>

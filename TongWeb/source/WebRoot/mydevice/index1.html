@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />     
+<meta name="apple-mobile-web-app-capable" content="yes" />    
+<meta name="format-detection" content="telephone=no" />  
+    <title>index.html</title>
+    <link rel="stylesheet" type="text/css" href="/tong/lib/css/ionic.min.css">
+    <style type="text/css">
+    .item .range{
+    	width: 70%;
+    	height: 20px;
+    	float: right;
+	}
+    </style>
+  </head>
+  <body ng-app="device">
+		<div class="list">
+			<a class="item item-icon-left" href="#">
+			    <img class="icon" src="mydevice/img/device.png">
+			    <h2 style="margin-left: 20px;">风行天下</h2>
+	    	</a>
+		<a class="item item-icon-right" href="#">
+			<i class="icon ion-edit"></i>
+	   	    WIFI热点名称：查询中..
+	  	</a>
+	  	<a class="item item-icon-right"href="#">
+	  		<i class="icon ion-edit"></i>
+	    	WIFI密码：查询中..
+	    </a>
+	    <a class="item item-icon-right"href="#">
+		  		<i class="icon ion-edit"></i>
+		    	视频分享密码：查询中..
+	    </a>
+	     <a class="item item-icon-right"href="#">
+		  		<i class="icon ion-edit"></i>
+		    	车主密码：********
+	    </a>
+	      <a class="item item-icon-right"href="#">
+		  		<i class="icon ion-edit"></i>
+		    	FM频点：查询中..
+	    </a>
+	     <a class="item"href="#">
+		    	3G网络流量：查询中..
+	    </a>
+	    <a class="item item-icon-right"href="#">
+		  		<i class="icon ion-edit"></i>
+		    	声音输出方式：查询中..
+	    </a>
+	    <a class="item" href="#">
+	    		设备音量
+	    		    <div class="range">
+			  <i class="icon ion-volume-low"></i>
+			  <input type="range" name="volume" id="myRange" min="0" max="10" step="1" value="0" onclick="console.log(document.getElementById('myRange').value)">
+			  <i class="icon ion-volume-high"></i>
+			</div>
+	   	</a>
+	     <a class="item item-icon-right"href="#">
+		  		<i class="icon ion-ios-arrow-right"></i>
+		    	蓝牙管理
+	    </a>
+	  	<a class="item"href="#">
+		    	产品序列号:查询中..
+	    </a>
+	  	<a class="item item-icon-right"href="#">
+		  		<i class="icon ion-ios-arrow-right"></i>
+		    	版本信息 V1.0版本
+	    </a>
+    </div>
+  
+				
+  </body>
+</html>

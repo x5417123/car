@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>用户组管理</title>
+
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../css/usergroup.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/usergroup.js"></script> 
+</head>
+
+ <body style="background:white;"> 
+  <div class="easyui-layout" fit="true"> 
+   <div region="north" style="height: 50px;background:#F7F7F7;"> 
+    <a id="addUg" class="easyui-linkbutton" style="width:80px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-addgroup'">新建组</a>
+  <!--   <a id="delUg" class="easyui-linkbutton" style="width:80px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-deletegroup'">删除组</a>
+    <a id="rnmUg" class="easyui-linkbutton" style="width:80px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-renamegroup'">重命名组</a>
+    <a id="addUser" class="easyui-linkbutton" style="width:90px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-addgroupuser'">添加组用户</a>
+    <a id="delUser" class="easyui-linkbutton" style="width:90px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-deletegroupuser'">删除组用户</a>
+    <a id="addAuth" class="easyui-linkbutton" style="width:90px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-addgroupauth'">添加组权限</a>
+    <a id="delAuth" class="easyui-linkbutton" style="width:90px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-deletegroupauth'">删除组权限</a> --> 
+   </div> 
+   <div region="center"> 
+    <table id="treegrid"></table>  
+   </div> 
+  </div> 
+  	<div id="menu" class="easyui-menu" style="width:120px;"></div> 
+ </body>
+</html>
+

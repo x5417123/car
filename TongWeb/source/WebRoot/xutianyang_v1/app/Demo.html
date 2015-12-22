@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://cdn.gbtags.com/jquery/2.1.1/jquery.min.js"></script>
+ 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.3.15/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="first">
+    <div class="row" ng-repeat="i in input">
+        <div class="col-xs-12 {{i.position}}">
+            <span class="btn {{i.bgColor}}">{{i.message}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <input type="text" class="form-control" value="test 123" ng-model="inputMsg" />
+                <span class="input-group-addon" ng-click="addInput(inputMsg)">Send</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	var app=angular.module('myApp',[]);
+
+app.controller('first',function($scope){
+    $scope.input=[
+        {
+            'poistion': 'text-left',
+            'bgColor': 'btn-primary',
+            'message': 'Hello!'
+        },
+        {
+            'position': 'text-right',
+            'bgColor': 'btn-default',
+            'message': 'Hi'
+        },
+        {
+            'position': 'text-right',
+            'bgColor': 'btn-default',
+            'message': 'What\'s up?'
+        }
+    ];
+    $scope.addInput=function(msg){
+        if(msg.length===0){
+            return false;
+        }
+        $scope.input.push(
+             {
+                 'poistion': 'text-left',
+                 'bgColor': 'btn-primary',
+                 'message': msg
+             }
+        );
+        $scope.inputMsg='';
+    };
+});
+    	
+    </script>
+</body>
+</html>

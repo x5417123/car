@@ -1,0 +1,40 @@
+ul {
+	list-style: none;
+}
+
+li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.datagrid-header-row td {
+	font-weight: bolder;
+}
+
+.icon-addgroup {
+	background: url('../icons/addgroup.png') no-repeat center center;
+}
+
+.icon-addgroupauth {
+	background: url('../icons/addgroupauth.png') no-repeat center center;
+}
+
+.icon-addgroupuser {
+	background: url('../icons/addgroupuser.png') no-repeat center center;
+}
+
+.icon-renamegroup {
+	background: url('../icons/renamegroup.png') no-repeat center center;
+}
+
+.icon-deletegroup {
+	background: url('../icons/deletegroup.png') no-repeat center center;
+}
+
+.icon-deletegroupauth {
+	background: url('../icons/deletegroupauth.png') no-repeat center center;
+}
+
+.icon-deletegroupuser {
+	background: url('../icons/deletegroupuser.png') no-repeat center center;
+}

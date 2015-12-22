@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="pragma" content="no-cache" /> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
+  <meta http-equiv="expires" content="0" /> 
+  <title>用户管理</title> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/bootstrap/easyui.css" /> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/icon.css" /> 
+  <link rel="stylesheet" type="text/css" href="../css/user.css" /> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="../js/userview.js"></script> 
+ </head> 
+ <body style="background:white;"> 
+  <div class="easyui-layout" fit="true"> 
+   <div region="north" style="height: 50px;background:#F7F7F7;"> 
+    <a id="addUser" class="easyui-linkbutton" style="width:80px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-add'">新建用户</a>
+    <a id="delUser" class="easyui-linkbutton" style="width:80px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-remove'">删除用户</a>
+    <a id="rnmUser" class="easyui-linkbutton" style="width:120px;height:30px;margin-left: 20px;margin-top: 8px;" data-options="iconCls:'icon-edit'">修改用户信息</a> 
+   </div> 
+   <div region="center"> 
+    <table id="userdatagrid" class="easyui-datagrid"></table> 
+   </div> 
+  </div> 
+  <div id="rnmdlg" class="easyui-dialog" title="重命名用户" style="width:280px;height:130px;padding: 10px;display: none;" closed="true" collapsible="false" minimizable="false" maximizable="false" resizable="false" modal="true"> 
+   <table> 
+    <tbody>
+     <tr> 
+      <td>新用户名：</td> 
+      <td><input type="text" id="rnm" class="easyui-validatebox" data-options="required:true" value="" /></td> 
+     </tr> 
+    </tbody>
+   </table> 
+  </div>   
+ </body>
+</html>

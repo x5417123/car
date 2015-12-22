@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>menu.html</title>
+<meta charset=UTF-8>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+<meta http-equiv="expires" content="0" />
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../../general/css/menu.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#yhgl").click(function() {
+			page = './oa/page/userview.html';
+			title = '用户管理';
+			gfmod.addClosableViewPage(page, title);
+		});
+		$("#yhzgl").click(function() {
+			page = './oa/page/usergroupview.html';
+			title = '用户组管理';
+			gfmod.addClosableViewPage(page, title);
+		});
+		$("#qxgl").click(function() {
+			page = './oa/page/authview.html';
+			title = '权限管理';
+			gfmod.addClosableViewPage(page, title);
+		});
+	});
+</script>
+</head>
+
+<body>
+	<ul>
+		<li><a id="yhgl" class="easyui-linkbutton"
+			data-options="plain:true,iconCls:'icon-user'">用户管理</a></li>
+		<li><a id="yhzgl" class="easyui-linkbutton"
+			data-options="plain:true,iconCls:'icon-usergroup'">用户组管理</a></li>
+		<li><a id="qxgl" class="easyui-linkbutton"
+			data-options="plain:true,iconCls:'icon-auth'">权限管理</a></li>
+	</ul>
+</body>
+</html>

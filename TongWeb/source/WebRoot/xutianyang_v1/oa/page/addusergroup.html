@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>adduser.html</title>
+    <meta charset="UTF-8">
+      <meta http-equiv="pragma" content="no-cache" /> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
+  <meta http-equiv="expires" content="0" /> 
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+	var mustInput;
+	$(function(){
+		mustInput=$("#newName");
+		mustInput.textbox({
+			width:200,
+			height:20,
+			required: true
+		});
+		mustInput.textbox().next('span').find('input').focus();
+		$("#ok").click(function(){
+			if(!mustInput.textbox("getValue")){
+				mustInput.textbox().next('span').find('input').focus();
+				return;
+			}
+			
+				var name=mustInput.textbox("getValue");
+				var namelength=checkStringlength(name);
+				if(namelength>32){
+					alert("用户名中文不能大于16位或者英文不可以超过32位！");
+					mustInput.textbox().next('span').find('input').focus();
+					return;
+				}
+			
+				var userGroup={};
+				userGroup.name=$.trim(name);
+				userGroup.remark=$.trim($("#newRemark").val());
+				userGroup=JSON.stringify(userGroup);
+				var url="/tong/servlet/usergroup?act=add_grp&ug="+encodeURI(encodeURI(userGroup));
+				$.post(url,function(data){
+					if(data.responseCode==100){
+						alert("新增成功！");
+						gfmod.closeDialog();
+						gfmod.UsergroupInitTreegrid();
+					}else{
+						alert(data.message);
+					}
+					console.log(data);
+				},"JSON");
+			
+		});
+		$("#cancel").click(function(){
+			gfmod.closeDialog();
+		});
+	});
+	function checkStringlength(data) {  
+		  var len = 0;  
+		  for (var i=0; i<data.length; i++) {  
+		    if (data.charCodeAt(i)>127 || data.charCodeAt(i)==94) {  
+		       len += 2;  
+		     } else {  
+		       len ++;  
+		     }  
+		   }  
+		  return len;  
+	};
+	</script>
+  </head>
+  
+  <body>
+   <table cellpadding="2" style="margin: auto;margin-top: 10px;"> 
+    <tbody>
+     <tr> 
+      <td>名称：</td> 
+      <td><input type="text" id="newName" /></td> 
+     </tr> 
+     <tr> 
+      <td colspan="2">备注：</td> 
+     </tr> 
+     <tr> 
+      <td colspan="2"><textarea rows="4" cols="30" id="newRemark" style="margin-left: 30px;"></textarea></td> 
+     </tr> 
+    </tbody>
+   </table> 
+   <div style="width:220px;margin: auto;margin-top:5px;">
+  		<a id="ok" class="easyui-linkbutton" style="width:100px;height:30px;" data-options="iconCls:'icon-ok1'">确定</a> 
+  		<a id="cancel" class="easyui-linkbutton" style="width:100px;height:30px;margin-left: 10px;" data-options="iconCls:'icon-cancel1'">取消</a>
+   </div>
+  </body>
+</html>

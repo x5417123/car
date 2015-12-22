@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+table {
+	border-collapse: collapse;
+	border: solid 1px Black;
+}
+
+table td {
+	width: 50px;
+	height: 20px;
+	border: solid 1px Black;
+	padding: 5px;
+	text-align: center;
+}
+
+.title {
+	width: 400px;
+	height: 30px;
+	margin: auto;
+	line-height: 30px;
+	text-align: center;
+}
+
+.main {
+	width: 800px;
+	height: 30px;
+	margin: auto;
+	line-height: 30px;
+}
+
+.Data {
+	list-style: none;
+	float: left;
+}
+
+.Data li {
+	float: left;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+
+.Page {
+	list-style: none;
+	float: right;
+}
+
+.Page li {
+	float: left;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+
+.content {
+	width: 800px;
+	margin: auto;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+.Check {
+	list-style: none;
+	float: left;
+}
+
+.Check li {
+	float: left;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+.register {
+	list-style: none;
+	margin-left: 300px;
+}
+
+.register li {
+	float: left;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+.examine  {
+	list-style: none;
+	float: right;
+}
+
+.examine  li {
+	float: left;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+}
+.header{
+	width: 220px;
+	height: 40px;
+	margin: auto;
+	margin-top: 10px;
+}

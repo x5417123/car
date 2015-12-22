@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+  	 <meta charset="UTF-8">
+    <title>test.html</title>
+     <link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+	<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+	var tree;
+	var tableNameArray;
+	$(function(){
+	tree=$('#tt');
+	tableNameArray=["江苏省“菜篮子”工程蔬菜生产基地情况调查表","江苏省“米袋子”工程蔬菜生产基地情况调查表","农田土壤环境质量监测采样点位登记表","土壤及农产品样品检测分析结果登记表","农产品重金属安全监测采样点位登记表"];
+	tree.tree({
+		lines:true,
+		animate:true,
+		onClick:function(node){
+			change(node);
+		},onDblClick:function(node){
+			change(node);
+		},onBeforeExpand:function(node){
+			change(node);
+		}
+	});
+	var url="/zhgk_api/servlet/xzqh?act=ls_xzqh&parentid=0";
+	$.post(url,function(data){
+		if(data.responseCode==100){
+			var dataTree=[{
+			    "id":data.data[0].id,
+			    "text":data.data[0].name,
+			    "state":"closed",
+			    "attributes":data.data[0].attributes
+			}];
+			tree.tree({
+				data:dataTree
+			});
+		}else{
+			$.messager.alert(data.message,data.message);
+		}
+		
+	},"JSON");
+		
+	});
+	function change(node){
+		console.log($("#tt").tree("getChildren",node.target));
+		if(tree.tree("getChildren",node.target)==0){
+				if(node.attributes=="true"){
+					var url="/zhgk_api/servlet/xzqh?act=ls_xzqh&parentid="+node.id;
+					$.post(url,function(data){
+						for(var i=0;i<data.data.length;i++){
+							tree.tree('append', {
+								parent: node.target,
+						        data:[{
+						        	"id":data.data[i].id,
+								    "text":data.data[i].name,
+								    "state":"closed",
+								    "attributes":data.data[i].attributes
+						        }]
+							});
+							
+						}
+					},"JSON");
+				}else if(node.attributes=="false"){
+					for(var i=0;i<tableNameArray.length;i++){
+						tree.tree('append', {
+							parent: node.target,
+					        data:[{
+					        	"id":node.id,
+							    "text":tableNameArray[i],
+					        }]
+						});
+					}
+				} else{
+					console.log(node);
+				}
+		}
+	}
+	</script>
+  </head>
+  
+  <body>
+    <ul id="tt"></ul>
+  </body>
+</html>

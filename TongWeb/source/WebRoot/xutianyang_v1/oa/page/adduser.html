@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>adduser.html</title>
+    <meta charset="UTF-8">
+      <meta http-equiv="pragma" content="no-cache" /> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
+  <meta http-equiv="expires" content="0" /> 
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+	var mustInput;
+	$(function(){
+		mustInput=$("#newName,#newPassword,#confirm,#newPhone,#email");
+		mustInput.textbox({
+			MaxLength:16,
+			width:200,
+			height:20,
+			required: true
+		});
+		$("#ok").click(function(){
+			var i=0;
+			mustInput.each(function(){
+				if(!$(this).textbox("getValue")){
+					$(this).textbox().next('span').find('input').focus();
+					return false;
+				}else{
+					i++;
+				}
+			});
+			if(i==5){
+				var name=$("#newName").textbox("getValue");
+				var namelength=checkStringlength(name);
+				if(namelength>16){
+					alert("用户名中文不能大于8位或者英文不可以超过16位！");
+					$("#newName").textbox().next('span').find('input').focus();
+					return;
+				}
+				var password=$("#newPassword").textbox("getValue");
+				var passwordlength=checkStringlength(password);
+				if(passwordlength>16){
+					alert("密码不可以超过16位！");
+					$("#newPassword").textbox().next('span').find('input').focus();
+					return;
+				}
+				var confirm=$("#confirm").textbox("getValue");
+				if(confirm!=password){
+					alert("二次密码不一致！");
+					$("#confirm").textbox().next('span').find('input').focus();
+					return;
+				}
+				var newPhone=$("#newPhone").textbox("getValue");
+				var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+				 if (!reg.test(newPhone)) {
+				      alert("手机格式不正确！");
+				      $("#newPhone").textbox().next('span').find('input').focus();
+				      return;
+				 }
+				var email=$("#email").textbox("getValue");
+				var reg=/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+				if(!reg.test(email)){
+					  alert("邮箱格式不正确！");
+					  $("#email").textbox().next('span').find('input').focus();
+				      return;
+				}
+				var user={};
+				user.name=name;
+				user.password=password;
+				user.phone=newPhone;
+				user.email=email;
+				user.remark=$("#newRemark").val();
+				user=JSON.stringify(user);
+				var url="/tong/servlet/oauser?act=add_user&user="+encodeURI(encodeURI(user));
+				$.post(url,function(data){
+					if(data.responseCode==100){
+						alert("新增成功！");
+						gfmod.closeDialog();
+						gfmod.UserManageInitdatagrid();
+					}else{
+						alert(data.message);
+					}
+					console.log(data);
+				},"JSON");
+			}
+		});
+		$("#cancel").click(function(){
+			gfmod.closeDialog();
+		});
+	});
+	function checkStringlength(data) {  
+		  var len = 0;  
+		  for (var i=0; i<data.length; i++) {  
+		    if (data.charCodeAt(i)>127 || data.charCodeAt(i)==94) {  
+		       len += 2;  
+		     } else {  
+		       len ++;  
+		     }  
+		   }  
+		  return len;  
+	};
+	</script>
+  </head>
+  
+  <body>
+   <table cellpadding="2" style="margin: auto;margin-top: 10px;"> 
+    <tbody>
+     <tr> 
+      <td>用户名：</td> 
+      <td><input type="text" id="newName" /></td> 
+     </tr> 
+     <tr> 
+      <td>密码：</td> 
+      <td><input type="password" id="newPassword" /></td> 
+     </tr> 
+     <tr> 
+      <td>确认密码：</td> 
+      <td><input type="password" id="confirm"/></td> 
+     </tr> 
+     <tr> 
+      <td>手机号：</td> 
+      <td><input type="text" id="newPhone"/></td> 
+     </tr> 
+     <tr> 
+      <td>邮件：</td> 
+      <td><input type="text" id="email"/></td> 
+     </tr>
+     <tr> 
+      <td colspan="2">备注：</td> 
+     </tr> 
+     <tr> 
+      <td colspan="2"><textarea rows="4" cols="30" id="newRemark" style="margin-left: 30px;"></textarea></td> 
+     </tr> 
+    </tbody>
+   </table> 
+   <div style="width:220px;margin: auto;margin-top:5px;">
+  		<a id="ok" class="easyui-linkbutton" style="width:100px;height:30px;" data-options="iconCls:'icon-ok1'">确定</a> 
+  		<a id="cancel" class="easyui-linkbutton" style="width:100px;height:30px;margin-left: 10px;" data-options="iconCls:'icon-cancel1'">取消</a>
+   </div>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <title>Document</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css" /> 
+  <link rel="stylesheet" type="text/css" href="Roller.css" /> 
+ </head> 
+ <body ng-app="wechatApp" > 
+  <div class="container" style="padding-top: 50px;" ng-controller="menuModule"> 
+   <div class="row"> 
+    <div  class="col-xs-3" style="background: #2e3238;height: 677px;"> 
+     <div class="container-fluid"> 
+      <div class="row" style="padding: 10px;margin-top: 10px;"> 
+       <div class="col-xs-3"> 
+        <a style="background:url({{Userheadpicpath}});background-size: 100% 100%;display:block;width:40px; height: 40px;"></a> 
+       </div> 
+       <div class="col-xs-9" style="color:white;text-align: center;"> 
+        <h4 style="margin-top: 10px;margin-bottom: 2px;"><span style="color: white">{{userName}}</span></h4> 
+       </div> 
+      </div> 
+      <div class="row" style="padding: 10px;"> 
+       <div class="col-xs-12"> 
+     
+<input type="text" class="form-control" placeholder="搜索联系人">
+
+
+<!-- <div class="panel panel-default" style="position: absolute;z-index: 100;width: 100%;">
+   <div class="panel-body">
+      <div class="list-group"> 
+         <a href="#"  class="list-group-item" style="border:0;margin-top: 5px;border-bottom: 1px solid #292C33;background:0;padding: 10px 0px;" >
+           <img src="person.jpg" style="width: 40px;height: 40px;" />
+            <span href="#" style="margin-left:20px; ">name</span> 
+            <span href="#" style="margin-right: 20px;float: right;" >add</span> 
+         </a> 
+        </div> 
+   </div>
+</div> -->
+       </div> 
+      </div> 
+      <div class="row" style="padding: 10px;"> 
+       <div class="col-xs-12"> 
+        <div class="btn-group btn-group-justified" role="group" aria-label="..."> 
+         <div class="btn-group" role="group"> 
+          <button type="button" class="btn btn-default">{{menuTitle1}}</button> 
+         </div> 
+         <div class="btn-group" role="group"> 
+          <button type="button" class="btn btn-default">{{menuTitle2}}</button> 
+         </div> 
+         <div class="btn-group" role="group"> 
+          <button type="button" class="btn btn-default">{{menuTitle3}}</button> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="row" style="overflow: auto;max-height:483px;width: 100%;margin-left: -5px;"> 
+       <div class="col-xs-12" style="overflow: auto;"> 
+        <div class="list-group"> 
+         <a href="#" ng-repeat="item in chatList" class="list-group-item" style="border:0;margin-top: 5px;border-bottom: 1px solid #292C33;background:0;padding: 10px 0px;" ng-click="ss(this)">
+          <img src="{{item.picPath}}" style="width: 40px;height: 40px;" />
+           <span href="#" style="color: white;margin-left:20px; ">{{item.name}}</span> </a> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="col-xs-9"> 
+     <div class="container-fluid"> 
+      <div class="panel  panel-primary"> 
+       <div class="panel-heading" style="text-align: center;"> 
+        <h3 class="panel-title">{{viewName}}</h3> 
+       </div> 
+       <div class="panel-body" style="height: 635px;overflow: auto;margin:0px;padding:0px;"> 
+        <div style="height: 500px;overflow: auto;margin:0px;padding:0px;margin-top:10px; ">
+             
+             <div class="row" ng-repeat="i in input" style="margin-right:0px;margin-left:0px;margin-top: 5px;">
+                <div class="col-xs-12 {{i.position}}">
+                  <img ng-if="i.img =='left'" src="{{i.picPath}}" 
+                      style="width: 40px;height: 40px;"/>
+                  <span class="btn {{i.bgColor}}">{{i.message}}</span>
+                  <img ng-if="i.img =='right'" src="{{i.picPath}}" 
+                      style="width: 40px;height: 40px;" />
+               </div>
+            </div>
+        </div>
+       <div style="height: 100px;margin:0px;padding:0px;">
+            <div class="row" style="margin-right:0px;margin-left:0px;">
+                <div class="col-xs-12">
+                 <div class="input-group">
+                 <input type="text" class="form-control" value="test 123" ng-model="inputMsg" />
+                  <span class="input-group-addon" ng-click="addInput(inputMsg)">Send</span>
+                </div>
+              </div>
+            </div>
+       </div>
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+ </div>
+  </div>  
+
+
+
+ </body>
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="angularPostJava.js"></script>
+  <script type="text/javascript">
+    var wechatApp = angular.module("wechatApp",[],function($httpProvider){
+      changePostType($httpProvider);
+    });
+
+
+    //url请求变量
+    wechatApp.constant('getUserInfo','/tong/servlet/login?act=app_info');
+    wechatApp.constant('getFriendsList', '/tong/servlet/buddy?act=ls_buddy');
+    wechatApp.constant('getaddFriendList', '/tong/servlet/buddy?act=ls_buddy_req');
+    wechatApp.constant('addFriend', '/tong/servlet/buddy?act=add_buddy_req');
+    wechatApp.constant('updAddFrReq', '/tong/servlet/buddy?act=upd_buddy_req');
+    wechatApp.constant('delFriend', '/tong/servlet/buddy?act=del_buddy');
+    wechatApp.constant('addSession','/tong/servlet/session?act=add_session');
+
+    //界面元素变量
+    wechatApp.value('menuStatic',1);
+    wechatApp.value('userName','');
+    wechatApp.value('menuTitle1','聊天');
+    wechatApp.value('menuTitle2','博客');
+    wechatApp.value('menuTitle3','联系人');
+    wechatApp.value('userheadpicpath','person.jpg');
+    wechatApp.value('chatList',[]);
+    wechatApp.value("viewTitle","请选择");
+    wechatApp.value('searchAppUser',[]);
+   
+   
+
+/*    wechatApp.controller("dialogModule",function($scope){
+        $scope.addfri=function(e){
+            alert("123");
+            console.log(e);
+        } 
+    });*/
+
+
+
+    wechatApp.controller("menuModule",function($scope,$rootScope,$http,menuTitle1,menuTitle2,menuTitle3,userName,userheadpicpath,chatList,searchAppUser,getUserInfo,getFriendsList,getaddFriendList,viewTitle){
+         $scope.menuTitle1=menuTitle1;
+         $scope.menuTitle2=menuTitle2;
+         $scope.menuTitle3=menuTitle3;
+         $scope.Userheadpicpath=userheadpicpath;
+         $scope.viewName=viewTitle;
+        
+         $scope.searchAppUser=searchAppUser;
+         $scope.ss=function(e){
+            $scope.viewName=e.item.name;
+        
+         };
+         $http.get(getUserInfo).success(function(data) {
+                   if(data.responseCode!=100){
+                     alert("请重新登录！");
+                     location.href="login.html";
+                  }else{
+                     $scope.userName=data.data.nickName;
+                  }
+          });
+
+          $http.get(getFriendsList).success(function(data) {
+                   if(data.responseCode!=100){
+                     alert("请重新登录！");
+                     location.href="login.html";
+                  }else{
+                     if(data.data.length>0){
+                      var list=[];
+                      for(var i=0;i<data.data.length;i++){
+                          var other={};
+                          other.picPath="person.jpg";
+                          other.name=data.data[i].nickName;
+                          list.push(other);
+                      }
+                         $scope.chatList=list;
+
+                     }else{
+                       /*wechatApp.value('chatList',[{picPath:"person.jpg",name:"您还没有好友"}]);*/
+                        $scope.chatList=[{picPath:"person.jpg",name:"您还没有好友"}];
+                     }
+                  }
+          });
+
+    $scope.input=[
+        {
+            'poistion': 'text-left',
+            'bgColor': 'btn-primary',
+            'message': 'Hello!',
+            'picPath':'person.jpg',
+            'img':'left'
+        },
+        {
+            'position': 'text-right',
+            'bgColor': 'btn-default',
+            'message': 'Hi',
+            'picPath':'person.jpg',
+            'img':'right'
+        },
+        {
+            'position': 'text-right',
+            'bgColor': 'btn-default',
+            'message': 'What\'s up?',
+            'picPath':'person.jpg',
+            'img':'right'
+        },
+        {
+            'position': 'text-left',
+            'bgColor': 'btn-primary',
+            'message': 'Hi',
+            'picPath':'person.jpg',
+            'img':'left'
+        },
+    ];
+    $scope.addInput=function(msg){
+        if(msg.length===0){
+            return false;
+        }
+        $scope.input.push(
+             {
+                 'poistion': 'text-left',
+                 'bgColor': 'btn-primary',
+                 'message': msg,
+                 'picPath':'person.jpg',
+                 'img':'left'
+             }
+        );
+        $scope.inputMsg='';
+    };
+    });
+
+/*wechatApp.controller('view',function($scope,$rootScope){
+    
+    
+});*/
+  </script>
+</html>

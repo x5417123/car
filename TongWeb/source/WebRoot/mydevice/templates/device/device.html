@@ -1,0 +1,55 @@
+<ion-view hide-nav-bar="true" title="设置">
+    <ion-content>
+        <ion-list>
+			<a class="item item-icon-left" href="#">
+			    <img class="icon" src="mydevice/img/device.png">
+			    <h2 style="margin-left: 20px;">风行天下</h2>
+	    	</a>
+		  <a class="item item-icon-right">
+	   	    	WIFI热点名称：{{deviceData.hotName}}
+	  	 </a>
+	  	<a class="item item-icon-right" ng-click="setWifiPassword()">
+	  		<i class="icon ion-edit"></i>
+	    		WIFI密码：{{deviceData.hotPassword}}
+	    </a>
+        <a class="item item-icon-right" ng-click="setVideoSharePassword()">
+		  		<i class="icon ion-edit"></i>
+		    	视频分享密码：{{deviceData.videoPassword}}
+	    </a>
+	     <a class="item item-icon-right" href="#/setpassword">
+		  		<i class="icon ion-edit"></i>
+		    	车主密码：********
+	    </a>
+	      <a class="item item-icon-right" ng-click="setFm()">
+		  		<i class="icon ion-edit"></i>
+		    	FM频点：{{deviceData.fmFrequency}}
+	    </a>
+	     <a class="item">
+		    	3G网络流量：{{deviceData.fmFrequency}}
+	    </a>
+	    <a class="item item-icon-right" ng-click="setMusicType()">
+		  		<i class="icon ion-edit"></i>
+		    	声音输出方式：{{deviceData.sound}}
+	    </a>
+	    <a class="item" href="#">
+	    		设备音量
+	    	<div class="range">
+			  <i class="icon ion-volume-low"></i>
+			  <input type="range" name="volume" id="myRange" min="0" max="15" step="1"  ng-model='Rang' ng-change="getRang()">
+			  <i class="icon ion-volume-high"></i>
+			</div>
+	   	</a>
+	     <a class="item item-icon-right" href="#/bluetooth">
+		  		<i class="icon ion-ios-arrow-right"></i>
+		    	蓝牙管理
+	    </a>
+	  	<a class="item"href="#">
+		    	产品序列号:{{deviceData.sn}}
+	    </a>
+	  	<a class="item item-icon-right"href="#/version">
+		  		<i class="icon ion-ios-arrow-right"></i>
+		    	版本信息 
+	    </a>
+        </ion-list>
+    </ion-content>
+</ion-view>

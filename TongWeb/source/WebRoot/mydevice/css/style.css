@@ -1,0 +1,29 @@
+  .item .range{
+    	width: 70%;
+    	height: 20px;
+    	float: right;
+	}
+ h2{
+	font-size: 1.1em;
+	font-family: "微软雅黑,宋体";
+	margin: auto;
+}
+.notice{
+	width:80%;
+	margin:auto;
+	height:20em;
+	border: 1px solid #cccccc;
+	border-radius:2em;
+	text-align: center;
+	margin-top:1em;
+}
+.noticeContent{
+	font-size: 0.8em;
+	width:80%;
+	height: 100%;
+	display: block;
+	margin: auto;
+	text-align: center;
+	word-break:break-all;
+	margin-top:0.5em;
+}

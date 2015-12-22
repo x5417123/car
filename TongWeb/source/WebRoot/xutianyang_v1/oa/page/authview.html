@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>authview.html</title>
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+var datagrid;
+$(function(){
+	datagrid=$("#userGroup");
+ 	initdatagrid();
+});
+//初始化datagrid
+function initdatagrid() {
+	datagrid.datagrid({
+		fit : true,
+		fitColumns : true,
+		striped : true,// 交替显示行背景
+		singleSelect : true,// 只能选择一行
+		columns : [ [ {
+			field : 'name',
+			title : '权限名称',
+			width : '50%',
+			align : 'center'
+		},{
+			field : 'remark',
+			title : '备注',
+			width : '50%',
+			align : 'center'
+		} ] ]
+	});
+	datagrid.datagrid('loadData', {
+		total : 0,
+		rows : []
+	});// 先清空treegrid
+	_url = "/tong/servlet/oaauth?act=ls_auth";
+	$.ajax({
+		type : "POST",
+		url : _url,
+		dataType : "json",
+		async:true,
+		success : function(data) {
+			if(data.responseCode==100){
+				for(var i = 0; i < data.data.length; i++){
+					datagrid.datagrid("appendRow", data.data[i]);
+				}
+			}else{
+				var title="错误";
+				var msg="<p style='text-align:center'>"+data.message+"<p>";
+				var icon="error";
+				var fn=function(){
+					top.location.href="/tong";
+				};
+				gfmod.alert(title,msg,icon,fn);
+			}
+		},
+		error : function(error) {
+			var title="错误";
+			var msg="<p style='text-align:center'>"+error+"<p>";
+			var icon="error";
+			var fn=function(){
+				top.location.href="/tong";
+			};
+			gfmod.alert(title,msg,icon,fn);
+		}
+	});
+}
+</script>
+</head>
+<body>
+			<table id="userGroup"></table>
+</body>
+</html>

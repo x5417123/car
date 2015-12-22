@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://code.hs-cn.com/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+var xmlhttp;
+var accessToken;
+$(function() {
+    var url = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=bwDr216EVl4a1XGwwa7xpO7R&client_secret=fc3ad04ac3bac3676609c480c1c221d4";
+    var fn=state_Change;
+    loadXMLDoc(url,fn);
+    $("#down").click(function() {
+        var tex = $.trim($("#textarea").val());
+        var cuid = $.trim($("#sn").val());
+        var url = "http://tsn.baidu.com/text2audio?tex=" + tex + "&lan=zh&cuid=" + cuid + "&ctp=1&tok=" + accessToken;
+        console.log(url);
+       window.open(url);
+    });
+}); 
+function loadXMLDoc(url,fn) {
+    if (url != null) {
+        xmlhttp = null;
+        if (window.XMLHttpRequest) { // code for IE7, Firefox, Opera, etc.
+            xmlhttp = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp != null) {
+            xmlhttp.onreadystatechange = fn;
+            xmlhttp.open("POST", url, true);
+            xmlhttp.send(null);
+        } else {
+            alert("Your browser does not support XMLHTTP.");
+        }
+    }
+};
+
+function state_Change() {
+	var data=xmlhttp.responseText;
+    accessToken = JSON.parse(data).access_token;
+};
+</script>
+
+</head>
+<body>
+	<div style="width: 100%;height: 100%;">
+		<div style="width:800px;height: 600px;margin: auto;">
+			<p>用户唯一标识：</p>
+			<input type="text" id="sn" />
+			<p>合成的文本</p>
+			<textarea id="textarea" rows="10" cols="50" style="width:800px;">
+
+			</textarea>
+			<button type="text" style="width: 100px;height: 30px;" id="down">听歌</button>
+				<!-- <textarea id="text1" rows="10" cols="50" style="width:800px;">
+				
+							   </textarea>
+							<a href="javascript:void(0);" id="tz" target="block">跳转</a> -->
+		</div>
+	</div>
+</body>
+</html>

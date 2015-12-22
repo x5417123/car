@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>delAuth.html</title>
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/GF/lib/easyui/themes/icon.css">
+<script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+var datagrid;
+var userGroupInfo;
+$(function(){
+	datagrid=$("#userGroup");
+	if (gfmod) {
+		gfmod.UserInGroupInitdatagrid = initdatagrid;
+		userGroupInfo=gfmod.userGroupNode;
+		console.log(userGroupInfo);
+	}
+	gfmod.UserInGroupInitdatagrid();
+	$("#ok").click(function(){
+		var userUuidList=new Array();
+		var checkRowsArray=datagrid.datagrid("getSelections");
+		for(var i=0;i<checkRowsArray.length;i++){
+			userUuidList.push(checkRowsArray[i].uuid);
+		}
+		var userUuidListLength=userUuidList.length;
+		console.log(userUuidList);
+		if(userUuidListLength>0){
+			var url="/tong/servlet/usergroup?act=grp_del_auth&uuid="+userGroupInfo.uuid+"&auth_uuid_ls="+userUuidList;
+			$.post(url,function(data){
+				console.log(data);
+				if(data.responseCode==100){
+					$.messager.alert("提示","操作成功！","info",function(){
+						gfmod.closeDialog();
+						gfmod.UsergroupInitTreegrid();
+					});
+				}else{
+					$.messager.alert("提示",data.message,"info",function(){
+						gfmod.closeDialog();
+					});
+				}
+			},"JSON");
+		}else{
+			$.messager.alert("提示","请选择一个权限！","error");
+		}
+		
+	});
+	$("#cancel").click(function(){
+		gfmod.closeDialog();
+	});
+});
+//初始化datagrid
+function initdatagrid() {
+	datagrid.datagrid({
+		fit : true,
+		fitColumns : true,
+		striped : true,// 交替显示行背景
+		singleSelect : false,// 只能选择一行
+		checkOnSelect : true,// 点击checkbox将永远选择这行
+		columns : [ [ {
+			field : 'ck',
+			checkbox : true
+		}, {
+			field : 'name',
+			title : '权限名称',
+			width : '97%',
+			align : 'center'
+		} ] ]
+	});
+	datagrid.datagrid('loadData', {
+		total : 0,
+		rows : []
+	});// 先清空treegrid
+	for(var i = 0; i < userGroupInfo.oaAuth.length; i++){
+		datagrid.datagrid("appendRow",userGroupInfo.oaAuth[i]);
+	}
+}
+</script>
+</head>
+<body>
+	<div  class="easyui-layout" fit="true">
+		<div region="north"  split="false" fit="true">
+			<table id="userGroup"></table>
+		</div>
+		<div region="south" split="false" style="height:40px;text-align: center;">
+		<a id="ok" class="easyui-linkbutton" style="width:100px;height:30px;margin-top: 3px;" data-options="iconCls:'icon-ok1'">确定</a> 
+  		<a id="cancel" class="easyui-linkbutton" style="width:100px;height:30px;margin-left: 10px;margin-top: 3px;" data-options="iconCls:'icon-cancel1'">取消</a>
+		</div>
+	</div>
+	
+</body>
+</html>

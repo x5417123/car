@@ -86,7 +86,6 @@ angular.module('starter', ['ionic','starter.controllers','starter.config','start
             })
             .state('tab.news_content', {
                 url: '/news_content/:aid',
-
                 views: {
                     'tab-article': {
                         templateUrl: "templates/article/article-content.html",

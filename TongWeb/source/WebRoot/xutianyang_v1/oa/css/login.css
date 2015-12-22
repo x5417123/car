@@ -1,0 +1,27 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow: hidden;
+}
+
+.STYLE3 {
+	font-size: 12px;
+	color: #adc9d9;
+}
+
+.code {
+	font-family: Arial, 宋体font-style : italic;
+	color: green;
+	border: 0;
+	padding: 2px 3px;
+	letter-spacing: 3px;
+	font-weight: bolder;
+	font-size: 10px;
+}
+
+form {
+	padding: 0px;
+	margin: 0px;
+}

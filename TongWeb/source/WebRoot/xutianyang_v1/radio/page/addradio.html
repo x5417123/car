@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="pragma" content="no-cache" /> 
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" /> 
+  <meta http-equiv="expires" content="0" /> 
+  <title>addradio.html</title> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/bootstrap/easyui.css" /> 
+  <link rel="stylesheet" type="text/css" href="/GF/lib/easyui/themes/icon.css" /> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="/GF/lib/easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <style type="text/css">
+  *{
+  	margin: 0px;
+  	padding: 0px;
+  }
+  	.container{
+  		width:200px;
+  		height:110px;
+  		margin:auto;
+  		position: absolute;
+  		top: 0px;
+  		left: 0px;
+  		right: 0px;
+  		bottom: 0px;
+  	}
+  	.container ul{
+  	 list-style: none;
+  	}
+  	.container li{
+  	margin-top:10px;
+  	}
+  </style> 
+  <script type="text/javascript">
+  $(function(){
+	  var node=gfmod.TreegridNode;
+	  $("#RadioName,#RadioURL").textbox({
+		    width:150,
+	    	height:25
+	  });
+	  $("#RadioName").textbox().next('span').find('input').focus();
+	  $("#ok").click(function(){
+		  var radioName=$.trim($("#RadioName").textbox("getValue"));
+		  var radioUrl=$.trim($("#RadioURL").textbox("getValue"));
+		  var radio={};
+		  radio.name=radioName;
+		  radio.url=radioUrl;
+		  radio.area_uuid=node.uuid;
+		  radio=JSON.stringify(radio);
+		  var url="/tong/servlet/radio?act=add_radio&radio="+encodeURIComponent(radio);
+		  $.post(url,function(data){
+			  if(data.responseCode==100){
+				    var title="添加成功！";
+					var msg="<p style='text-align:center'>添加成功！请点击确定！<p>";
+					var icon="ok";
+					var fn=function(){
+						gfmod.closeDialog();
+						gfmod.radioInitTreegrid();
+					};
+				  gfmod.alert(title,msg,icon,fn);
+			  }else{
+				  var title="失败！";
+					var msg="<p style='text-align:center'>"+data.message+"<p>";
+					var icon="error";
+					var fn=function(){
+						gfmod.closeDialog();
+						gfmod.radioInitTreegrid();
+					};
+				  gfmod.alert(title,msg,icon,fn);
+			  }
+		  },"JSON");
+	  });
+	  $("#no").click(function(){
+		  gfmod.closeDialog();
+	  });
+  });
+  </script> 
+ </head> 
+ <body> 
+  <div class="container"> 
+   <ul> 
+    <li> 
+     <div style="width:40px;float: left;line-height: 24px;">
+             名称:
+     </div><input type="text" id="RadioName" /> </li> 
+    <li> 
+     <div style="width:40px;float: left;line-height: 24px;">
+      URL:
+     </div><input type="text" id="RadioURL" /> </li> 
+    <li style="text-align: center;"> 
+       <a id="ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="padding:0px 5px 0px 5px;margin-right: 15px;">确认</a> 
+       <a id="no" class="easyui-linkbutton" data-options="iconCls:'icon-no'" style="padding:0px 5px 0px 5px;margin-left: 15px;">取消</a>  
+    </li>
+   </ul> 
+  </div>   
+ </body>
+</html>

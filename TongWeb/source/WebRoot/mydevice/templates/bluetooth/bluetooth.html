@@ -1,0 +1,37 @@
+<ion-view title="蓝牙管理">
+    <ion-content>
+        <ion-list>
+		<a class="item item-icon-left item-icon-right" href="#">
+			    <img class="icon" src="mydevice/img/device.png">
+			    <h2 style="margin-left: 20px;">风行天下</h2>
+			    <img class="icon" src="mydevice/img/refresh.gif" style="width:35px;height: 35px;margin-top:8px;"/>
+	    </a>
+        <a class="item item-divider">
+		  		<i class="icon ion-arrow-right-b energized"></i>
+		    	已配对设备：
+	    </a>
+        </ion-list>
+         <ion-list ng-repeat="bondedBtDevices in bondedBtDevicesList">
+             <a class="item item-icon-right">
+		  		<i class="icon ion-ios-close-outline" ng-click="bondedBtDevicesClick({{bondedBtDevices}})"></i>
+		    	{{bondedBtDevices.name}} 
+		    	<i style="float: right;color: #fe5602;">已连接</i>
+	   		 </a>
+        </ion-list>
+        <ion-list>
+            <a class="item item-divider">
+		  		<i class="icon ion-arrow-right-b energized"></i>
+		    	未配对设备：
+	    	</a>
+	    </ion-list>
+	    <ion-list ng-repeat="unbondedBtDevices in unbondedBtDevicesList">
+             <a class="item">
+		    	{{unbondedBtDevices.name}}
+		    	<i style="float: right;color: #fe5602;" ng-click="unbondedBtDevicesClick({{unbondedBtDevices}})">配对</i>
+	    	</a>
+        </ion-list>
+	 
+        
+        
+    </ion-content>
+</ion-view>
