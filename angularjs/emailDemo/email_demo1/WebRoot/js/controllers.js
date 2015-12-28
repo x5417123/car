@@ -31,14 +31,14 @@ aMailServices.constant("ENV",{
 	"message":[{
 		id:0,sender:"jesa@123.com",subject:'Hi jesa',
 		date:'Dec 7 ,2013 12:32:00',recipients:['greg@somecompany.com'],
-		message:'Hey , we should get asd'
+		message:'Hey , we should get jesa'
 	},{
 		id:1,sender:"fesda@123.com",subject:'Hi fesda',
 		date:'Dec 7 ,2013 12:32:00',recipients:['greg@somecompany.com'],
-		message:'Hey , we should get asd'
+		message:'Hey , we should get fesda'
 	},{
 		id:2,sender:"xwee@123.com",subject:'Hi xwee',
 		date:'Dec 7 ,2013 12:32:00',recipients:['greg@somecompany.com'],
-		message:'Hey , we should get asd'
+		message:'Hey , we should get xwee'
 	}]
-})
+});
